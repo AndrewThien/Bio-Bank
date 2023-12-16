@@ -4,12 +4,15 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from '@/app/table.module.css';
 import toast from "react-hot-toast";
+import AddCollection from '@/components/AddCollection';
 
 interface CollectionData {
   id: number; 
   title: string; 
   disease: string; 
 }
+// add loading state and indicator
+
 
 export default function HomePage() {
   const [collectionData, setCollectionData] = useState<CollectionData[] | null>(null);
@@ -64,6 +67,10 @@ export default function HomePage() {
               </table>
             </div>
           )}
+        </div>          
+        <div className="flex flex-col items-center text-center">
+        <h1 className="mb-1 text-3xl font-semibold">Add Collection</h1>
+          <AddCollection />
         </div>
       </div>
     </div>
