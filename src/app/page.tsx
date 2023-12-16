@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from '@/app/table.module.css';
+import toast from "react-hot-toast";
 
 interface CollectionData {
   id: number; 
@@ -47,7 +48,15 @@ export default function HomePage() {
                   {collectionData.map((collection) => (
                     <tr key={collection.id}>
                       <td>{collection.id}</td>
-                      <td>{collection.title}</td>
+                      <td>
+                      <Link key={collection.id} href={`/manage/${collection.id}`}>
+                        <div>
+                          <p className="w-full overflow-hidden text-sm truncate whitespace-nowrap text-ellipsis">
+                          {collection.title}
+                          </p>
+                        </div>
+                      </Link>
+                      </td>
                       <td>{collection.disease}</td>
                     </tr>
                   ))}
