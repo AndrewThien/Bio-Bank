@@ -1,6 +1,5 @@
 import { db } from "@/lib/db";
 import { samples } from "@/lib/db/schema";
-import { NextApiRequest, NextApiResponse } from 'next';
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 

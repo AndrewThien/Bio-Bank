@@ -1,13 +1,9 @@
 'use client';
 import React from "react";
-import { Input } from "./ui/input";
-import { useChat } from "ai/react";
 import { Button } from "./ui/button";
-import { Send, MessagesSquare } from "lucide-react";
-import MessageList from "./MessageList";
+import {  } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Message } from "ai";
 import styles from '@/app/table.module.css';
 
 type Props = { collection_id: number };
@@ -21,7 +17,6 @@ interface SamplesData {
   }
 
 const SamplesList = ({ collection_id }: Props) => {
-
   const { data } = useQuery({
     queryKey: ["collection", collection_id],
     queryFn: async () => {
