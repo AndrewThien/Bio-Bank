@@ -9,6 +9,8 @@ import axios from "axios";
 import { error } from "console";
 import SamplesList from "@/components/SamplesList";
 import ParentCollection from "@/components/ParentCollection";
+import AddCollection from "@/components/AddCollection";
+import AddSample from "@/components/AddSample";
 
 interface CollectionData {
   id: number; 
@@ -75,6 +77,8 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
           )}
           <h1 className="mb-1 mt-5 text-3xl font-semibold">Samples Record Details</h1>
           <SamplesList collection_id={parsedCollectionId} />
+          <h1 className="mb-1 mt-5 text-2xl font-semibold">Add a new sample record to this collection</h1>
+          <AddSample collection_id={parsedCollectionId} />
         </div>
       </div>
     </div>

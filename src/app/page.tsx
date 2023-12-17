@@ -53,11 +53,11 @@ export default function HomePage() {
                       <td>{collection.id}</td>
                       <td>
                       <Link key={collection.id} href={`/manage/${collection.id}`}>
-                        <div>
-                          <p className="w-full overflow-hidden text-sm truncate whitespace-nowrap text-ellipsis">
+                        <Button>
+                          <p className="w-full overflow-hidden truncate whitespace-nowrap text-ellipsis">
                           {collection.title}
                           </p>
-                        </div>
+                        </Button>
                       </Link>
                       </td>
                       <td>{collection.disease}</td>
@@ -69,7 +69,7 @@ export default function HomePage() {
           )}
         </div>          
         <div className="flex flex-col items-center text-center">
-        <h1 className="mb-1 text-3xl font-semibold">Add Collection</h1>
+        <h1 className="mb-1 mt-5 text-2xl font-semibold">Add a new collection to Bio Bank</h1>
           <AddCollection />
         </div>
       </div>

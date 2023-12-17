@@ -3,7 +3,7 @@ import {integer, pgEnum, pgTable, serial, text, timestamp, varchar, numeric, dat
 
 export const collections = pgTable("collections", {
   id: serial("id").primaryKey(),
-  created_at: timestamp("created_at").notNull().defaultNow(),
+  created_at: date("created_at").notNull().defaultNow(),
   title: text("title").notNull(),
   disease: text("disease").notNull(),
 })

@@ -17,6 +17,7 @@ interface SamplesData {
   }
 
 const SamplesList = ({ collection_id }: Props) => {
+  // learn about useQuery, camelCase or snake_case?
   const { data } = useQuery({
     queryKey: ["collection", collection_id],
     queryFn: async () => {

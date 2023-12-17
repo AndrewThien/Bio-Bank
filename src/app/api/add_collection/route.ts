@@ -13,12 +13,11 @@ export const POST = async (req: Request) => {
       disease: disease,
     });
 
-    return NextResponse.json({ message: 'Data inserted successfully.' });
-    // toast
+    return NextResponse.json({ message: 'Collection data inserted successfully.' });
   } catch (error: any) {
-    console.error('Error inserting data:', error);
+    console.error('Error inserting collection data:', error);
     return NextResponse.json(
-      { error: 'Error inserting data.'},
+      { error: 'Error inserting collection data.'},
       { status: 500 }
     );
   }

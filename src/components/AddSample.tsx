@@ -1,30 +1,33 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 
-const AddCollection = () => {
-    const [title, setTitle] = useState('');
-    const [disease, setDisease] = useState('');
+type Props = { collection_id: number };
+
+
+const AddSample = ({collection_id}: Props) => {
+
+    const [donorCount, setDonorCount] = useState('');
+    const [materialType, setMaterialType] = useState('');
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
-        // Call your API to add the new collection
-        const response = await fetch('/api/add_collection', {
+        const response = await fetch('/api/add_sample', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ title, disease }),
+            body: JSON.stringify({ collection_id: parseInt(collection_id), donor_count: parseInt(donorCount), material_type: materialType }),
         });
 
         if (response.ok) {
             // Clear the form
-            setTitle('');
-            setDisease('');
-            toast.success('Collection added successfully');
+            setDonorCount('');
+            setMaterialType('');
+            toast.success('Sample added successfully');
         } else {
-            console.error('Error adding collection');
-            toast.error('Error adding collection');
+            console.error('Error adding sample');
+            toast.error('Error adding sample');
         }
     };
 
@@ -34,29 +37,29 @@ const AddCollection = () => {
                 <tbody>
                     <tr>
                         <td style={{ textAlign: 'left' }}>
-                            <label>Title:</label>
+                            <label>Donor count:</label>
                         </td>
                         <td>
-                            <input type="text" value={title} onChange={e => setTitle(e.target.value)} required />
+                            <input type="number" value={donorCount} onChange={e => setDonorCount(e.target.value)} required />
                         </td>
                     </tr>
                     <tr>
                         <td style={{ textAlign: 'left' }}>
-                            <label>Associated Disease:</label>
+                            <label>Material Type:</label>
                         </td>
                         <td>
-                            <input type="text" value={disease} onChange={e => setDisease(e.target.value)} required />
+                            <input type="text" value={materialType} onChange={e => setMaterialType(e.target.value)} required />
                         </td>
                     </tr>
                     <tr>
                         <td colSpan={2}>
-                            <button type="submit">Add Collection</button> 
+                            <button type="submit">Add Sample</button> 
                         </td>
                     </tr>
                 </tbody>
             </table>
         </form>
     );
-}
-// refresh page after adding collection
-export default AddCollection;
+};
+
+export default AddSample;
