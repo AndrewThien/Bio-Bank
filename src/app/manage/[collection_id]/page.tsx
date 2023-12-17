@@ -36,9 +36,12 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
       const collectionResponse = await fetch('/api/collections');
       const allCollectionData: CollectionData[] = await collectionResponse.json();
       const collectionData = allCollectionData.find(collection => collection.id === parsedCollectionId);
-      // Type guard
+      // Type guard and checking if prevCollectionData is null before trying to spread it
       if (collectionData) {
-        setCollectionData(prevCollectionData => [...prevCollectionData, collectionData]);
+        setCollectionData(prevCollectionData => [
+          ...(prevCollectionData || []), 
+          collectionData
+        ]);
       }
     } catch (error) {
       console.error('Error getting collection data:', error.message);
