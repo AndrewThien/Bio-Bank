@@ -69,13 +69,15 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr key={collectionData.id}>
-                    <td>{collectionData.id}</td>
-                    <td>{collectionData.title}</td>
-                    <td>{collectionData.disease}</td>
-                    <td>{collectionData.created_at}</td>
+                {collectionData.map((collection) => (
+                  <tr key={collection.id}>
+                    <td>{collection.id}</td>
+                    <td>{collection.title}</td>
+                    <td>{collection.disease}</td>
+                    <td>{collection.created_at}</td>
                   </tr>
-                </tbody>
+                ))}
+              </tbody>
               </table>
             </div>
           )}
