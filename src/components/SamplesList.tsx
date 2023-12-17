@@ -48,7 +48,7 @@ interface SamplesData {
                       <td>{data.collection_id}</td>
                       <td>{data.donor_count}</td>
                       <td>{data.material_type}</td>
-                      <td>{data.last_updated}</td>
+                      <td>{new Date(data.last_updated).toLocaleDateString()}</td>
                     </tr>
                   ))}
                 </tbody>

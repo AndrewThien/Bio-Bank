@@ -74,7 +74,7 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
                     <td>{collection.id}</td>
                     <td>{collection.title}</td>
                     <td>{collection.disease}</td>
-                    <td>{collection.created_at}</td>
+                    <td>{new Date(collection.created_at).toLocaleDateString()}</td>
                   </tr>
                 ))}
               </tbody>
