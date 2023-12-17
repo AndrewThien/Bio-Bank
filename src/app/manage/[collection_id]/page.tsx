@@ -45,6 +45,7 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
         ]);
       }
     } catch (error: any) {
+      console.error('Error getting collection data');
       toast.error('Error getting collection data');
     }
   };
