@@ -7,7 +7,6 @@ import { PlusCircle } from 'lucide-react';
 type Props = { collection_id: number };
 
 interface SamplesData {
-    id: number; 
     collection_id: number;
     donor_count: number;
     material_type: string; 
