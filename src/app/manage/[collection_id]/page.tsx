@@ -38,9 +38,7 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
       const collectionData = allCollectionData.find(collection => collection.id === parsedCollectionId);
       // Type guard
       if (collectionData) {
-        setCollectionData(collectionData);
-      } else {
-        setCollectionData(null);
+        setCollectionData(prevCollectionData => [...prevCollectionData, collectionData]);
       }
     } catch (error) {
       console.error('Error getting collection data:', error.message);
