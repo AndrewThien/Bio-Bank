@@ -1,5 +1,5 @@
 'use client';
-import { Home } from 'lucide-react';
+import { Home, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -24,8 +24,27 @@ type Props = {
   };
 };
 
+function LoadingPage() {
+  return (
+    <div>
+      <div className="w-screen min-h-screen bg-gradient-to-b from-sky-400 to-sky-200">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="flex flex-col items-center text-center">
+          <div className="flex items-center text-2xl">
+              <h1>Loading Sample details ...</h1>  
+              <Loader2 className="h-10 w-10 animate-spin ml-2" /> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const SamplePage =  ({ params: { collection_id } }: Props) => {
-  const [collectionData, setCollectionData] = useState<CollectionData[] | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  const [collectionData, setCollectionData] = useState<CollectionData | null>(null);
   const parsedCollectionId = parseInt(collection_id, 10);
 
   useEffect(() => {
@@ -44,13 +63,17 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
           collectionData
         ]);
       }
+      setLoading(false);
     } catch (error: any) {
       console.error('Error getting collection data');
       toast.error('Error getting collection data');
+      setLoading(false);
     }
   };
   
-
+  if (loading) {
+    return <LoadingPage />;
+  }
 
   return (
     <div className="w-screen min-h-screen bg-gradient-to-b from-sky-400 to-sky-200">
@@ -81,12 +104,15 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
               </table>
             </div>
           )}
+          {collectionData && (
+            <div className="flex flex-col items-center text-center">
           <h1 className="mb-1 mt-5 text-2xl font-semibold">Samples Record Details</h1>
           <SamplesList collection_id={parsedCollectionId} />
           <h1 className="mb-1 mt-3 text-2xl font-semibold">Add a new sample record to this collection</h1>
           <AddSample collection_id={parsedCollectionId} />
           <Link className='mt-2' href='/'>
             <Button>Home <Home className='ml-3'/></Button></Link>
+            </div>)}
         </div>
       </div>
     </div>
