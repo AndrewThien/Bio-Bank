@@ -1,32 +1,42 @@
 import { useState } from 'react';
+import { useMutation, useQueryClient } from 'react-query';
 import toast from 'react-hot-toast';
+import { Button } from '@/components/ui/button';
+import { PlusCircle } from 'lucide-react';
 
 const AddCollection = () => {
-    const [title, setTitle] = useState('');
-    const [disease, setDisease] = useState('');
+  const queryClient = useQueryClient();
 
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
+  const [title, setTitle] = useState('');
+  const [disease, setDisease] = useState('');
 
-        // Call your API to add the new collection
-        const response = await fetch('/api/add_collection', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ title, disease }),
-        });
+  const mutation = useMutation(newCollection => fetch('/api/add_collection', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newCollection),
+  }), {
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries('collections');
+      toast.success('Collection added successfully');
+    },
+    onError: () => {
+      console.error('Error adding collection');
+      toast.error('Error adding collection');
+    }
+  });
 
-        if (response.ok) {
-            // Clear the form
-            setTitle('');
-            setDisease('');
-            toast.success('Collection added successfully');
-        } else {
-            console.error('Error adding collection');
-            toast.error('Error adding collection');
-        }
-    };
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    mutation.mutate({ title, disease });
+
+    // Clear the form
+    setTitle('');
+    setDisease('');
+  };
 
     return (
         <form onSubmit={handleSubmit}>
@@ -50,7 +60,7 @@ const AddCollection = () => {
                     </tr>
                     <tr>
                         <td colSpan={2}>
-                            <button type="submit">Add Collection</button> 
+                            <Button type="submit" className='mt-3 text-sm'>Add Collection<PlusCircle className='ml-2'/></Button> 
                         </td>
                     </tr>
                 </tbody>

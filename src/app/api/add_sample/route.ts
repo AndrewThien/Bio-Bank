@@ -6,12 +6,13 @@ export const runtime = 'edge';
 
 export const POST = async (req: Request) => {
   try {
-    const { collection_id, donor_count, material_type } = await req.json();
+    const { collection_id, donor_count, material_type, last_updated } = await req.json();
     // Insert the values into the "collection" table
     await db.insert(samples).values({
       collection_id: collection_id,
       donor_count: donor_count,
       material_type: material_type,
+      last_updated: last_updated,
     });
 
     return NextResponse.json({ message: 'Sample Data inserted successfully.' });

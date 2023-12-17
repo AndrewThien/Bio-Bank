@@ -1,35 +1,46 @@
 import { useState } from 'react';
+import { useMutation, useQueryClient } from 'react-query';
 import toast from 'react-hot-toast';
+import { Button } from '@/components/ui/button';
+import { PlusCircle } from 'lucide-react';
 
 type Props = { collection_id: number };
 
-
 const AddSample = ({collection_id}: Props) => {
+  const queryClient = useQueryClient();
 
-    const [donorCount, setDonorCount] = useState('');
-    const [materialType, setMaterialType] = useState('');
+  const [donorCount, setDonorCount] = useState('');
+  const [materialType, setMaterialType] = useState('');
+  const [lastUpdated, setLastUpdated] = useState('');
 
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
+  const mutation = useMutation(newSample => fetch('/api/add_sample', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newSample),
+  }), {
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries('samples');
+      toast.success('Sample added successfully');
+    },
+    onError: () => {
+      console.error('Error adding sample');
+      toast.error('Error adding sample');
+    }
+  });
 
-        const response = await fetch('/api/add_sample', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ collection_id: parseInt(collection_id), donor_count: parseInt(donorCount), material_type: materialType }),
-        });
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
 
-        if (response.ok) {
-            // Clear the form
-            setDonorCount('');
-            setMaterialType('');
-            toast.success('Sample added successfully');
-        } else {
-            console.error('Error adding sample');
-            toast.error('Error adding sample');
-        }
-    };
+    mutation.mutate({ collection_id: parseInt(collection_id), donor_count: parseInt(donorCount), material_type: materialType, last_updated: lastUpdated });
+
+    // Clear the form
+    setDonorCount('');
+    setMaterialType('');
+    setLastUpdated('');
+  };
 
     return (
         <form onSubmit={handleSubmit}>
@@ -52,8 +63,16 @@ const AddSample = ({collection_id}: Props) => {
                         </td>
                     </tr>
                     <tr>
+                        <td style={{ textAlign: 'left' }}>
+                            <label>Last updated on:</label>
+                        </td>
+                        <td>
+                            <input type="date" value={lastUpdated} onChange={e => setLastUpdated(e.target.value)} required />
+                        </td>
+                    </tr>
+                    <tr>
                         <td colSpan={2}>
-                            <button type="submit">Add Sample</button> 
+                        <Button type="submit" className='mt-3 text-sm'>Add Sample<PlusCircle className='ml-2'/></Button> 
                         </td>
                     </tr>
                 </tbody>

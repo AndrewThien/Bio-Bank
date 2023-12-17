@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react";
-import {QueryClientProvider, QueryClient} from "@tanstack/react-query"
+import {QueryClientProvider, QueryClient} from "react-query"
 
 type Props = {
     children: React.ReactNode
@@ -14,4 +14,4 @@ const Providers = ({children}: Props) => {
     )
 }
 
-export default Providers
+export default Providers 

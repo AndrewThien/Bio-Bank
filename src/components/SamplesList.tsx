@@ -2,7 +2,7 @@
 import React from "react";
 import { Button } from "./ui/button";
 import {  } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
 import axios from "axios";
 import styles from '@/app/table.module.css';
 
@@ -16,17 +16,16 @@ interface SamplesData {
     last_updated: Date; 
   }
 
-const SamplesList = ({ collection_id }: Props) => {
-  // learn about useQuery, camelCase or snake_case?
-  const { data } = useQuery({
-    queryKey: ["collection", collection_id],
-    queryFn: async () => {
-      const response = await axios.post<SamplesData[]>("/api/samples", {
-        collection_id,
-      });
-      return response.data;
-    },
-  });
+  const SamplesList = ({ collection_id }: Props) => {
+    const { data } = useQuery({
+      queryKey: 'samples',
+      queryFn: async () => {
+        const response = await axios.post<SamplesData[]>("/api/samples", {
+          collection_id,
+        });
+        return response.data;
+      },
+    });
 
   return (
     <div className="max-h-screen">
