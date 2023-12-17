@@ -11,13 +11,13 @@ interface SamplesData {
     collection_id: number;
     donor_count: number;
     material_type: string; 
-    last_updated: Date; 
+    last_updated: string; 
   }
 
 const AddSample = ({collection_id}: Props) => {
   const queryClient = useQueryClient();
 
-  const [donorCount, setDonorCount] = useState('');
+  const [donorCount, setDonorCount] = useState(0);
   const [materialType, setMaterialType] = useState('');
   const [lastUpdated, setLastUpdated] = useState('');
 
@@ -42,10 +42,10 @@ const AddSample = ({collection_id}: Props) => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    mutation.mutate({ collection_id: parseInt(collection_id), donor_count: parseInt(donorCount), material_type: materialType, last_updated: lastUpdated });
+    mutation.mutate({ collection_id: collection_id, donor_count: donorCount, material_type: materialType, last_updated: lastUpdated });
 
     // Clear the form
-    setDonorCount('');
+    setDonorCount(0);
     setMaterialType('');
     setLastUpdated('');
   };
