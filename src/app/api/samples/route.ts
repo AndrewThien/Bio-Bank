@@ -17,7 +17,9 @@ export const POST = async (req: Request) => {
     return NextResponse.json(_samples);
   } catch (error: any) {
     console.error(error, "Fetching samples is going wrong");
-    return NextResponse.error({ status: 500, message: 'An error occurred while fetching samples' });
+    NextResponse.json(
+      {error: "internal server error"},
+      {status: 500});
   }
 };
 
