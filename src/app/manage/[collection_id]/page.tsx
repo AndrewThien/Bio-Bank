@@ -44,7 +44,7 @@ function LoadingPage() {
 const SamplePage =  ({ params: { collection_id } }: Props) => {
   const [loading, setLoading] = useState(true);
 
-  const [collectionData, setCollectionData] = useState<CollectionData | null>(null);
+  const [collectionData, setCollectionData] = useState<CollectionData[] | null>(null);
   const parsedCollectionId = parseInt(collection_id, 10);
 
   useEffect(() => {
