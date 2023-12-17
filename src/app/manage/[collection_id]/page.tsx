@@ -9,6 +9,7 @@ import axios from "axios";
 import SamplesList from "@/components/SamplesList";
 import AddCollection from "@/components/AddCollection";
 import AddSample from "@/components/AddSample";
+import { error } from 'console';
 
 interface CollectionData {
   id: number; 
@@ -43,8 +44,7 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
           collectionData
         ]);
       }
-    } catch (error) {
-      console.error('Error getting collection data:', error.message);
+    } catch (error: any) {
       toast.error('Error getting collection data');
     }
   };
