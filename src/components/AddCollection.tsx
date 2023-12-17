@@ -10,23 +10,31 @@ const AddCollection = () => {
   const [title, setTitle] = useState('');
   const [disease, setDisease] = useState('');
 
-  const mutation = useMutation(newCollection => fetch('/api/add_collection', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(newCollection),
-  }), {
+const mutation = useMutation(async ({ title, disease }: { title: string; disease: string }) => {
+    const response = await fetch('/api/add_collection', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ title, disease }),
+    });
+
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+
+    return response.json();
+}, {
     onSuccess: () => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries('collections');
-      toast.success('Collection added successfully');
+        // Invalidate and refetch
+        queryClient.invalidateQueries('collections');
+        toast.success('Collection added successfully');
     },
     onError: () => {
-      console.error('Error adding collection');
-      toast.error('Error adding collection');
-    }
-  });
+        console.error('Error adding collection');
+        toast.error('Error adding collection');
+    },
+});
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();

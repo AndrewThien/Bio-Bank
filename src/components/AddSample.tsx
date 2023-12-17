@@ -6,6 +6,14 @@ import { PlusCircle } from 'lucide-react';
 
 type Props = { collection_id: number };
 
+interface SamplesData {
+    id: number; 
+    collection_id: number;
+    donor_count: number;
+    material_type: string; 
+    last_updated: Date; 
+  }
+
 const AddSample = ({collection_id}: Props) => {
   const queryClient = useQueryClient();
 
@@ -13,7 +21,7 @@ const AddSample = ({collection_id}: Props) => {
   const [materialType, setMaterialType] = useState('');
   const [lastUpdated, setLastUpdated] = useState('');
 
-  const mutation = useMutation(newSample => fetch('/api/add_sample', {
+  const mutation = useMutation((newSample: SamplesData) => fetch('/api/add_sample', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
