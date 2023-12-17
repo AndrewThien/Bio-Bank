@@ -58,7 +58,7 @@ const AddSample = ({collection_id}: Props) => {
                             <label>Donor count:</label>
                         </td>
                         <td>
-                            <input type="number" value={donorCount} onChange={e => setDonorCount(e.target.value)} required />
+                            <input type="number" value={donorCount} onChange={e => setDonorCount(Number(e.target.value))} required />
                         </td>
                     </tr>
                     <tr>
