@@ -36,7 +36,12 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
       const collectionResponse = await fetch('/api/collections');
       const allCollectionData: CollectionData[] = await collectionResponse.json();
       const collectionData = allCollectionData.find(collection => collection.id === parsedCollectionId);
-      setCollectionData(collectionData);
+      // Type guard
+      if (collectionData) {
+        setCollectionData(collectionData);
+      } else {
+        setCollectionData(null);
+      }
     } catch (error) {
       console.error('Error getting collection data:', error.message);
       toast.error('Error getting collection data');
