@@ -76,49 +76,46 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
   }
 
   return (
-    <div className="w-screen min-h-screen bg-gradient-to-b from-sky-400 to-sky-200">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="flex flex-col items-center text-center">
-          <h1 className="mb-1 text-2xl font-semibold">Collection Details</h1>
-          {collectionData && (
-            <div>
-              <table className={styles.table}>
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Associated Disease</th>
-                    <th>Created At</th>
-                  </tr>
-                </thead>
-                <tbody>
-                {collectionData.map((collection) => (
-                  <tr key={collection.id}>
-                    <td>{collection.id}</td>
-                    <td>{collection.title}</td>
-                    <td>{collection.disease}</td>
-                    <td>{new Date(collection.created_at).toLocaleDateString()}</td>
-                  </tr>
-                ))}
-              </tbody>
-              </table>
-            </div>
-          )}
-          {collectionData && (
-            <div className="flex flex-col items-center text-center">
-          <h1 className="mb-1 mt-5 text-2xl font-semibold">Samples Record Details</h1>
-          <SamplesList collection_id={parsedCollectionId} />
-          <h1 className="mb-1 mt-3 text-2xl font-semibold">Add a new sample record to this collection</h1>
-          <AddSample collection_id={parsedCollectionId} />
-          <Link className='mt-2' href='/'>
-            <Button>Home <Home className='ml-3'/></Button></Link>
-            </div>)}
-        </div>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-sky-400 to-sky-200">
+      <div className="text-center">
+        <h1 className="mb-1 mt-5 text-2xl font-semibold">Collection Details</h1>
+        {collectionData && (
+          <div>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Title</th>
+                  <th>Associated Disease</th>
+                  <th>Created At</th>
+                </tr>
+              </thead>
+              <tbody>
+              {collectionData.map((collection) => (
+                <tr key={collection.id}>
+                  <td>{collection.id}</td>
+                  <td>{collection.title}</td>
+                  <td>{collection.disease}</td>
+                  <td>{new Date(collection.created_at).toLocaleDateString()}</td>
+                </tr>
+              ))}
+            </tbody>
+            </table>
+          </div>
+        )}
+        {collectionData && (
+          <div className="flex flex-col items-center text-center">
+        <h1 className="mb-1 mt-5 text-2xl font-semibold">Samples Record Details</h1>
+        <SamplesList collection_id={parsedCollectionId} />
+        <h1 className="mb-1 mt-3 text-2xl font-semibold">Add a new sample record to this collection</h1>
+        <AddSample collection_id={parsedCollectionId} />
+        <Link className='mt-2 mb-5' href='/'>
+          <Button>Home <Home className='ml-3'/></Button></Link>
+          </div>)}
       </div>
     </div>
   );
-}
-
+        }
   
 
 export default SamplePage;

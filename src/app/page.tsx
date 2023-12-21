@@ -58,12 +58,13 @@ export default function HomePage() {
   }
 
    return (
-    <div className="w-screen min-h-screen bg-gradient-to-b from-sky-400 to-sky-200">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-sky-400 to-sky-200">
         <div className="flex flex-col items-center text-center">
+        {/* Title */}
+        <Link href="/">
           <div className="flex items-center">
-            <h1 className="mb-1 mr-3 text-3xl font-semibold">BIO BANK</h1><Dna />
-          </div>
+            <h1 className="mt-5 mb-1 mr-3 text-3xl font-semibold">BIO BANK</h1><Dna />
+          </div></Link>
 
           {/* Show the collection data on a nice table using CSS style */}
           {collectionData && (
@@ -106,6 +107,6 @@ export default function HomePage() {
           <AddCollection />
         </div>)}
       </div>
-    </div>
+
   );
 }
