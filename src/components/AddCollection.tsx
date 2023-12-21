@@ -76,5 +76,5 @@ const mutation = useMutation(async ({ title, disease }: { title: string; disease
         </form>
     );
 }
-// refresh page after adding collection
+
 export default AddCollection;

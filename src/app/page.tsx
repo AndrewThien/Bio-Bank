@@ -8,12 +8,14 @@ import toast from "react-hot-toast";
 import AddCollection from '@/components/AddCollection';
 import { useState } from 'react';
 
+// Define the collection data type
 interface CollectionData {
   id: number; 
   title: string; 
   disease: string; 
 }
 
+// Loading page
 function LoadingPage() {
   return (
     <div>
@@ -32,8 +34,10 @@ function LoadingPage() {
 }
 
 export default function HomePage() {
+  // Set loading state
   const [loading, setLoading] = useState(true);
 
+  // Set Fetch collection data
   const fetchCollectionData = async () => {
     try {
       const collectionResponse = await fetch('/api/collections');
@@ -45,12 +49,14 @@ export default function HomePage() {
       setLoading(false);
     }
   };
-
+  // Use react-query to fetch collection data and reflect the changes in UI
   const { data: collectionData } = useQuery('collections', fetchCollectionData);
 
+  // If loading, show loading page
   if (loading) {
     return <LoadingPage />;
   }
+
    return (
     <div className="w-screen min-h-screen bg-gradient-to-b from-sky-400 to-sky-200">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -58,13 +64,15 @@ export default function HomePage() {
           <div className="flex items-center">
             <h1 className="mb-1 mr-3 text-3xl font-semibold">BIO BANK</h1><Dna />
           </div>
+
+          {/* Show the collection data on a nice table using CSS style */}
           {collectionData && (
             <div>
               <table className={styles.table}>
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Title</th>
+                    <th>Collection Title</th>
                     <th>Associated Disease</th>
                   </tr>
                 </thead>
@@ -73,6 +81,7 @@ export default function HomePage() {
                     <tr key={collection.id}>
                       <td>{collection.id}</td>
                       <td>
+                      {/* Link every title to its manage page*/}
                       <Link key={collection.id} href={`/manage/${collection.id}`}>
                         <Button>
                           <p className="w-full overflow-hidden truncate whitespace-nowrap text-ellipsis">
@@ -88,7 +97,9 @@ export default function HomePage() {
               </table>
             </div>
           )}
-        </div>    
+        </div>
+
+        {/* Function to add a new collection */}    
         {collectionData && (      
         <div className="flex flex-col items-center text-center">
         <h1 className="mb-3 mt-5 text-2xl font-semibold">Add a new collection to Bio Bank</h1>

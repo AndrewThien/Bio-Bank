@@ -1,7 +1,6 @@
 'use client';
 import React from "react";
 import { Button } from "./ui/button";
-import {  } from "lucide-react";
 import { useQuery } from "react-query";
 import axios from "axios";
 import styles from '@/app/table.module.css';
@@ -54,8 +53,8 @@ interface SamplesData {
                 </tbody>
               </table>
             </div>
-          ): (<p>No Samples Record Found</p>
-          )}
+          ): (<p>No Samples Record Found</p>)
+          }
     </div>
   );
 };

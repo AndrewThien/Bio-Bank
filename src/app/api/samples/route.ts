@@ -5,7 +5,6 @@ import { NextResponse } from "next/server";
 
 export const runtime = "edge";
 
-// Define the function for the GET method
 export const POST = async (req: Request) => {
   try {
     const { collection_id }  = await req.json();
