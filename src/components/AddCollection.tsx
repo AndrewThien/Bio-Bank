@@ -68,7 +68,7 @@ const mutation = useMutation(async ({ title, disease }: { title: string; disease
                     </tr>
                     <tr>
                         <td colSpan={2}>
-                            <Button type="submit" className='mt-3 text-sm'>Add Collection<PlusCircle className='ml-2'/></Button> 
+                            <Button type="submit" className='mt-3 mb-5 text-sm'>Add Collection<PlusCircle className='ml-2'/></Button> 
                         </td>
                     </tr>
                 </tbody>
