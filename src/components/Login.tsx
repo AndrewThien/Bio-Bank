@@ -1,6 +1,11 @@
 import { useState } from 'react';
 
-export default function PasswordCheck({ setIsPasswordCorrect }) {
+interface PasswordCheckProps {
+    setIsPasswordCorrect: React.Dispatch<React.SetStateAction<boolean>>;
+  }
+
+  export default function PasswordCheck({ setIsPasswordCorrect }: PasswordCheckProps) {
+    
     const [password, setPassword] = useState('');
   
     const handlePasswordChange = (event) => {
