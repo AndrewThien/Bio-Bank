@@ -51,7 +51,7 @@ const AddSample = ({collection_id}: Props) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <table>
+            <table style={{ padding: '10px' }}>
                 <tbody>
                     <tr>
                         <td style={{ textAlign: 'left' }}>
@@ -79,7 +79,7 @@ const AddSample = ({collection_id}: Props) => {
                     </tr>
                     <tr>
                         <td colSpan={2}>
-                        <Button type="submit" className='mt-3 text-sm'>Add Sample<PlusCircle className='ml-2'/></Button> 
+                        <Button type="submit" className='mt-3 mb-5 text-sm'>Add Sample<PlusCircle className='ml-2'/></Button> 
                         </td>
                     </tr>
                 </tbody>

@@ -57,15 +57,17 @@ export default function HomePage() {
     return <LoadingPage />;
   }
 
-   return (
+  return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-sky-400 to-sky-200">
-        <div className="flex flex-col items-center text-center">
-        {/* Title */}
+      <div className="flex justify-center text-center">
         <Link href="/">
           <div className="flex items-center">
             <h1 className="mt-5 mb-1 mr-3 text-3xl font-semibold">BIO BANK</h1><Dna />
-          </div></Link>
-
+          </div>
+        </Link>
+      </div>
+      <div className="flex flex-col sm:flex-row justify-center">
+        <div className="w-full sm:w-2/3 sm:mr-10">
           {/* Show the collection data on a nice table using CSS style */}
           {collectionData && (
             <div>
@@ -99,14 +101,17 @@ export default function HomePage() {
             </div>
           )}
         </div>
-
-        {/* Function to add a new collection */}    
-        {collectionData && (      
-        <div className="flex flex-col items-center text-center">
-        <h1 className="mb-3 mt-5 text-2xl font-semibold">Add a new collection to Bio Bank</h1>
-          <AddCollection />
-        </div>)}
+        <div className="w-full sm:w-1/3 mt-5 sm:mt-0">
+          {/* Function to add a new collection */}
+          {collectionData && (
+            <div className="flex flex-col items-center text-center">
+              <h1 className="mb-3 mt-5 text-xl font-semibold">
+                Add a new collection? Do it here </h1>
+              <AddCollection />
+            </div>
+          )}
+        </div>
       </div>
-
+    </div>
   );
 }
