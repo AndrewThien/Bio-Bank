@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import AddCollection from '@/components/AddCollection';
 import { useState } from 'react';
 import LoadingPage from '@/components/LoadingPage';
+import PasswordCheck from '@/components/Login';
 
 // Define the collection data type
 interface CollectionData {
@@ -20,6 +21,8 @@ interface CollectionData {
 export default function HomePage() {
   // Set loading state
   const [loading, setLoading] = useState(true);
+
+  const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
 
   // Set Fetch collection data
   const fetchCollectionData = async () => {
@@ -42,11 +45,14 @@ export default function HomePage() {
   }
 
   return (
+    <>
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-sky-400 to-sky-200">
+    {isPasswordCorrect ? (
+    <>
       <div className="flex justify-center text-center">
         <Link href="/">
           <div className="flex items-center">
-            <h1 className="mt-5 mb-1 mr-3 text-3xl font-semibold">BIO BANK</h1><Dna />
+            <h1 className="mt-5 mb-1 mr-3 text-3xl font-semibold">BIO BANK</h1><Dna className='mt-5'/>
           </div>
         </Link>
       </div>
@@ -95,7 +101,14 @@ export default function HomePage() {
             </div>
           )}
         </div>
+      </div> 
+      </>
+      ) : (
+      <div className="flex flex-col items-center text-center">
+      <PasswordCheck setIsPasswordCorrect={setIsPasswordCorrect} />
       </div>
+      )}
     </div>
+    </>
   );
 }
