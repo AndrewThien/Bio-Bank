@@ -4,8 +4,10 @@ import toast from 'react-hot-toast';
 import { Button } from '@/components/ui/button';
 import { PlusCircle } from 'lucide-react';
 
+// Define compponent property
 type Props = { collection_id: number };
 
+// Define the sample data type
 interface SamplesData {
     collection_id: number;
     donor_count: number;
@@ -14,12 +16,15 @@ interface SamplesData {
   }
 
 const AddSample = ({collection_id}: Props) => {
+  // Set query client
   const queryClient = useQueryClient();
 
+  // Set states
   const [donorCount, setDonorCount] = useState<number | null>(null);
   const [materialType, setMaterialType] = useState('');
   const [lastUpdated, setLastUpdated] = useState('');
 
+  // Set mutation function for adding sample and refetching
   const mutation = useMutation((newSample: SamplesData) => fetch('/api/add_sample', {
     method: 'POST',
     headers: {
@@ -38,6 +43,7 @@ const AddSample = ({collection_id}: Props) => {
     }
   });
 
+  // Handle form submit
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -48,7 +54,7 @@ const AddSample = ({collection_id}: Props) => {
     setMaterialType('');
     setLastUpdated('');
   };
-
+    // Return the form component
     return (
         <form onSubmit={handleSubmit}>
             <table style={{ padding: '10px' }}>

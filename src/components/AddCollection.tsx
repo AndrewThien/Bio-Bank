@@ -5,11 +5,13 @@ import { Button } from '@/components/ui/button';
 import { PlusCircle } from 'lucide-react';
 
 const AddCollection = () => {
+  // Set query client
   const queryClient = useQueryClient();
-
+  // Set states
   const [title, setTitle] = useState('');
   const [disease, setDisease] = useState('');
 
+  // Set mutation function for adding collection and refetching
 const mutation = useMutation(async ({ title, disease }: { title: string; disease: string }) => {
     const response = await fetch('/api/add_collection', {
         method: 'POST',
@@ -35,7 +37,7 @@ const mutation = useMutation(async ({ title, disease }: { title: string; disease
         toast.error('Error adding collection');
     },
 });
-
+    // Handle form submit
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -45,7 +47,7 @@ const mutation = useMutation(async ({ title, disease }: { title: string; disease
     setTitle('');
     setDisease('');
   };
-
+    // Return the form component
     return (
         <form onSubmit={handleSubmit}>
             <table>

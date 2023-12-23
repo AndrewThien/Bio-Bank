@@ -10,7 +10,9 @@ import SamplesList from "@/components/SamplesList";
 import AddCollection from "@/components/AddCollection";
 import AddSample from "@/components/AddSample";
 import { error } from 'console';
+import LoadingPage from '@/components/LoadingPage';
 
+// Define the collection data type
 interface CollectionData {
   id: number; 
   created_at: Date;
@@ -18,44 +20,36 @@ interface CollectionData {
   disease: string; 
 }
 
+// Define page property
 type Props = {
   params: {
     collection_id: string; 
   };
 };
 
-function LoadingPage() {
-  return (
-    <div>
-      <div className="w-screen min-h-screen bg-gradient-to-b from-sky-400 to-sky-200">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="flex flex-col items-center text-center">
-          <div className="flex items-center text-2xl">
-              <h1>Loading Sample details ...</h1>  
-              <Loader2 className="h-10 w-10 animate-spin ml-2" /> 
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 const SamplePage =  ({ params: { collection_id } }: Props) => {
+  // Set loading state
   const [loading, setLoading] = useState(true);
 
+  // Set Fetch collection data state
   const [collectionData, setCollectionData] = useState<CollectionData[] | null>(null);
   const parsedCollectionId = parseInt(collection_id, 10);
 
+  // useEffect to fetch collection data
   useEffect(() => {
     fetchCollectionData();
   }, []); // Added an empty dependency array to useEffect to ensure it runs only once
 
+  // Set Fetch collection data
   const fetchCollectionData = async () => {
     try {
       const collectionResponse = await fetch('/api/collections');
       const allCollectionData: CollectionData[] = await collectionResponse.json();
+
+      // Filter the collection data to get the collection with the id passed in the url
       const collectionData = allCollectionData.find(collection => collection.id === parsedCollectionId);
+
       // Type guard and checking if prevCollectionData is null before trying to spread it
       if (collectionData) {
         setCollectionData(prevCollectionData => [
@@ -80,6 +74,8 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
       <div className="flex flex-col sm:flex-row justify-center">
         <div className="flex flex-col sm:flex-row items-start sm:items-center text-center sm:w-full">
           <div className="sm:w-2/3 sm:mr-10">
+
+            {/* Home button */}
             <div className="flex justify-start items-center">
               <Link className='mt-3' href='/'>
                 <Button>Home <Home className='ml-3'/></Button>
@@ -90,13 +86,14 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
                 <h1 className="mb-1 mt-5 text-2xl font-semibold">Collection Details</h1>
               </div>
             )}
+            {/* Collection details */}
             {collectionData && (
               <div>
                 <table className={styles.table}>
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Title</th>
+                    <th>Collection Title</th>
                     <th>Associated Disease</th>
                     <th>Created At</th>
                   </tr>
@@ -114,6 +111,7 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
                 </table>
               </div>
             )}
+            {/* Show list of samples */}
             {collectionData && (
               <div className="flex flex-col items-center text-center">
                 <h1 className="mb-1 mt-5 text-2xl font-semibold">Samples Record Details</h1>
@@ -121,6 +119,7 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
               </div>
             )}
           </div>
+          {/* Add new sample function */}
           {collectionData && (
             <div className="sm:w-1/3 mt-5 sm:mt-0 items-center text-center">
               <h1 className="mb-1 mt-5 text-xl font-semibold">Add a new sample record to this collection? Do it here</h1>

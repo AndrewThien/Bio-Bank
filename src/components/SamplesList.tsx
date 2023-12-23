@@ -5,8 +5,10 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import styles from '@/app/table.module.css';
 
+// Define component property
 type Props = { collection_id: number };
 
+// Define the sample data type
 interface SamplesData {
     id: number; 
     collection_id: number;
@@ -16,6 +18,8 @@ interface SamplesData {
   }
 
   const SamplesList = ({ collection_id }: Props) => {
+    
+    // Use react-query to fetch sample data and reflect the changes in UI
     const { data } = useQuery({
       queryKey: 'samples',
       queryFn: async () => {
@@ -33,7 +37,7 @@ interface SamplesData {
               <table className={styles.table}>
                 <thead>
                   <tr>
-                    <th>ID</th>
+                    <th>Sample ID</th>
                     <th>Collection ID</th>
                     <th>Donor Count</th>
                     <th>Material Type</th>
