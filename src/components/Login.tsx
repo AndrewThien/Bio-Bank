@@ -5,10 +5,10 @@ interface PasswordCheckProps {
   }
 
   export default function PasswordCheck({ setIsPasswordCorrect }: PasswordCheckProps) {
-    
+
     const [password, setPassword] = useState('');
   
-    const handlePasswordChange = (event) => {
+    const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setPassword(event.target.value);
       if (event.target.value === '111') {
         setIsPasswordCorrect(true);
