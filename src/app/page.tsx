@@ -1,12 +1,10 @@
 'use client';
 import { Button } from '@/components/ui/button';
-import { Dna } from 'lucide-react';
 import { useQuery } from 'react-query';
 import Link from 'next/link';
 import styles from '@/app/table.module.css';
 import toast from "react-hot-toast";
 import AddCollection from '@/components/AddCollection';
-import { useState } from 'react';
 import LoadingPage from '@/components/LoadingPage';
 
 // Define the collection data type
@@ -16,45 +14,45 @@ interface CollectionData {
   disease: string; 
 }
 
-
 export default function HomePage() {
-  // Set loading state
-  const [loading, setLoading] = useState(true);
 
   // Set Fetch collection data
   const fetchCollectionData = async () => {
     try {
       const collectionResponse = await fetch('/api/collections');
       const collectionData: CollectionData[] = await collectionResponse.json();
-      setLoading(false);
       return collectionData;
     } catch (error: any) {
       toast.error('Error loading collections');
-      setLoading(false);
     }
   };
   // Use react-query to fetch collection data and reflect the changes in UI
-  const { data: collectionData } = useQuery('collections', fetchCollectionData);
+  const { data: collectionData, isLoading } = useQuery('collections', fetchCollectionData);
 
   // If loading, show loading page
-  if (loading) {
+  if (isLoading) {
     return <LoadingPage />;
   }
 
   return (
+    <>
+    {/* Top sticky Nav Bar */}
+    <div className="sticky top-0 z-50 flex items-center justify-center w-full bg-white">
+      <Link href="/">
+        <div className="flex items-center">
+          <h1 className="mt-5 mb-1 text-3xl font-semibold">BIO BANK</h1>
+        </div>
+      </Link>
+    </div>
+    {/* Main content */}
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-sky-400 to-sky-200">
-      <div className="flex justify-center text-center">
-        <Link href="/">
-          <div className="flex items-center">
-            <h1 className="mt-5 mb-1 mr-3 text-3xl font-semibold">BIO BANK</h1><Dna className='mt-5' />
-          </div>
-        </Link>
-      </div>
+
       <div className="flex flex-col sm:flex-row justify-center">
         <div className="w-full sm:w-2/3 sm:mr-10">
           {/* Show the collection data on a nice table using CSS style */}
           {collectionData && (
             <div>
+              <h1 className="mb-3 mt-5 text-2xl font-semibold text-center">Collection List</h1>
               <table className={styles.table}>
                 <thead>
                   <tr>
@@ -97,5 +95,6 @@ export default function HomePage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
