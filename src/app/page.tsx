@@ -40,7 +40,7 @@ export default function HomePage() {
     <div className="sticky top-0 z-50 flex items-center justify-center w-full bg-white">
       <Link href="/">
         <div className="flex items-center">
-          <h1 className="mt-5 mb-1 text-3xl font-semibold">BIO BANK</h1>
+          <h1 className="mt-2 mb-2 text-3xl font-semibold">BIO BANK</h1>
         </div>
       </Link>
     </div>

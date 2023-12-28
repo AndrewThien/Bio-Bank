@@ -1,5 +1,5 @@
 'use client';
-import { Home, Loader2 } from 'lucide-react';
+import { ArrowLeftCircle, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import styles from '@/app/table.module.css';
@@ -51,25 +51,24 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
   return (
     <>    
     {/* Top sticky Nav Bar */}
-    <div className="sticky top-0 z-50 flex items-center justify-between w-full bg-white px-4">
+    <div className="sticky top-0 z-50 flex justify-between items-center w-full bg-white px-4">
       {/* Home button */}
-      <div className="flex items-center">
+      <div>
         <Link href='/'>
-          <Button>Home <Home className='ml-3'/></Button>
+          <ArrowLeftCircle className='ml-5' />
         </Link>
       </div>
 
       {/* Title */}
-      <div className="flex-grow text-center">
+      <div className="flex justify-center flex-grow">
         <Link href="/">
-          <h1 className="mt-5 mb-1 text-3xl font-semibold">BIO BANK</h1>
+          <h1 className="mt-2 mb-2 text-3xl font-semibold">BIO BANK</h1>
         </Link>
       </div>
 
       {/* Empty div to keep the title centered */}
       <div></div>
     </div>
-    
     {/* Main content */}
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-sky-400 to-sky-200">
       <div className="flex flex-col sm:flex-row justify-center">
