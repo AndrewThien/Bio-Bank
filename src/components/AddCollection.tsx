@@ -41,11 +41,17 @@ const mutation = useMutation(async ({ title, disease }: { title: string; disease
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
+    // Confirm with user
+    const userConfirmed = window.confirm('A new collection will be added to the Bio Bank. Are you sure to proceed?');
+
+    if (userConfirmed) {
+
     mutation.mutate({ title, disease });
 
     // Clear the form
     setTitle('');
     setDisease('');
+    }
   };
     // Return the form component
     return (
@@ -53,15 +59,15 @@ const mutation = useMutation(async ({ title, disease }: { title: string; disease
             <table>
                 <tbody>
                     <tr>
-                        <td style={{ textAlign: 'left' }}>
-                            <label>Title:</label>
+                        <td style={{ textAlign: 'center' }}>
+                            <label>Collection Title:</label>
                         </td>
                         <td>
                             <input type="text" value={title} onChange={e => setTitle(e.target.value)} required />
                         </td>
                     </tr>
                     <tr>
-                        <td style={{ textAlign: 'left' }}>
+                        <td style={{ textAlign: 'center' }}>
                             <label>Associated Disease:</label>
                         </td>
                         <td>

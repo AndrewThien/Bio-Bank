@@ -47,12 +47,17 @@ const AddSample = ({collection_id}: Props) => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    mutation.mutate({ collection_id: collection_id, donor_count: donorCount || 0, material_type: materialType, last_updated: lastUpdated });
+    // Confirm with user
+    const userConfirmed = window.confirm('A new sample record will be added to the current collection. Are you sure to proceed?');
 
-    // Clear the form
-    setDonorCount(null);
-    setMaterialType('');
-    setLastUpdated('');
+    if (userConfirmed) {
+      mutation.mutate({ collection_id: collection_id, donor_count: donorCount || 0, material_type: materialType, last_updated: lastUpdated });
+
+      // Clear the form
+      setDonorCount(null);
+      setMaterialType('');
+      setLastUpdated('');
+    }
   };
     // Return the form component
     return (

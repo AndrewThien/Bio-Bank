@@ -46,7 +46,7 @@ export default function HomePage() {
       <div className="flex justify-center text-center">
         <Link href="/">
           <div className="flex items-center">
-            <h1 className="mt-5 mb-1 mr-3 text-3xl font-semibold">BIO BANK</h1><Dna />
+            <h1 className="mt-5 mb-1 mr-3 text-3xl font-semibold">BIO BANK</h1><Dna className='mt-5' />
           </div>
         </Link>
       </div>

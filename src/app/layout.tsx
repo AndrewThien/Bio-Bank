@@ -7,7 +7,7 @@ import Providers from '@/components/Providers'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Bio Bank',
+  title: 'Bio Bank - By Andrew Thien',
   description: 'Interview Task at UoN',
 }
 
