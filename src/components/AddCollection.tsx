@@ -41,13 +41,10 @@ const mutation = useMutation(async ({ title, disease }: { title: string; disease
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    // Confirm with user
+    // Confirm with user then add collection and clear the form
     const userConfirmed = window.confirm('A new collection will be added to the Bio Bank. Are you sure to proceed?');
-
     if (userConfirmed) {
-
     mutation.mutate({ title, disease });
-
     // Clear the form
     setTitle('');
     setDisease('');

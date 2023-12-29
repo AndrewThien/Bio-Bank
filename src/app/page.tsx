@@ -20,7 +20,7 @@ export default function HomePage() {
   const fetchCollectionData = async () => {
     try {
       const collectionResponse = await fetch('/api/collections');
-      const collectionData: CollectionData[] = await collectionResponse.json();
+      const collectionData: CollectionData[] = await collectionResponse.json(); // A Promise that resolves to a JavaScript object. This object could be anything that can be represented by JSON — an object, an array, a string, a number...
       return collectionData;
     } catch (error: any) {
       toast.error('Error loading collections');
@@ -46,7 +46,7 @@ export default function HomePage() {
     </div>
     {/* Main content */}
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-sky-400 to-sky-200">
-
+    {/* Make the page responsive by adding 'sm' attribute */}
       <div className="flex flex-col sm:flex-row justify-center">
         <div className="w-full sm:w-2/3 sm:mr-10">
           {/* Show the collection data on a nice table using CSS style */}
@@ -66,7 +66,7 @@ export default function HomePage() {
                     <tr key={collection.id}>
                       <td>{collection.id}</td>
                       <td>
-                      {/* Link every title to its manage page*/}
+                      {/* Link every collection title to its manage page*/}
                       <Link key={collection.id} href={`/manage/${collection.id}`}>
                         <Button>
                           <p className="w-full overflow-hidden truncate whitespace-nowrap text-ellipsis">

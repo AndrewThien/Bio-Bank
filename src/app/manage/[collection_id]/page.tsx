@@ -26,8 +26,9 @@ type Props = {
 
 
 const SamplePage =  ({ params: { collection_id } }: Props) => {
-  const parsedCollectionId = parseInt(collection_id, 10);
 
+  // Parse the collection id from the url
+  const parsedCollectionId = parseInt(collection_id, 10);
 
   // Set Fetch collection data
   const fetchCollectionData = async () => {
@@ -41,9 +42,10 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
       toast.error('Error getting collection data');
     }
   };
-
+  // Use react-query to fetch collection data
   const { data: collectionData, isLoading } = useQuery('collectionData', fetchCollectionData);
 
+  // If loading, show loading page
   if (isLoading) {
     return <LoadingPage />;
   }
@@ -69,18 +71,19 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
       {/* Empty div to keep the title centered */}
       <div></div>
     </div>
+
     {/* Main content */}
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-sky-400 to-sky-200">
+      {/* Make the page responsive by adding 'sm' attribute */}
       <div className="flex flex-col sm:flex-row justify-center">
         <div className="flex flex-col sm:flex-row items-start sm:items-center text-center sm:w-full">
           <div className="sm:w-2/3 sm:mr-10">
-
+            {/* Show collection details for reference of the current sample record */}
             {collectionData && (
               <div className="text-center w-full">
                 <h1 className="mb-1 mt-5 text-2xl font-semibold">Collection Details</h1>
               </div>
             )}
-            {/* Collection details */}
             {collectionData && (
               <div>
                 <table className={styles.table}>

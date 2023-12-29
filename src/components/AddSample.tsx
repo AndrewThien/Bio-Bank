@@ -47,12 +47,10 @@ const AddSample = ({collection_id}: Props) => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    // Confirm with user
+    // Confirm with user then add sample and clear the form
     const userConfirmed = window.confirm('A new sample record will be added to the current collection. Are you sure to proceed?');
-
     if (userConfirmed) {
       mutation.mutate({ collection_id: collection_id, donor_count: donorCount || 0, material_type: materialType, last_updated: lastUpdated });
-
       // Clear the form
       setDonorCount(null);
       setMaterialType('');

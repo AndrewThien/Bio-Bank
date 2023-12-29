@@ -17,18 +17,18 @@ interface SamplesData {
     last_updated: Date; 
   }
 
-  const SamplesList = ({ collection_id }: Props) => {
-    
-    // Use react-query to fetch sample data and reflect the changes in UI
-    const { data } = useQuery({
-      queryKey: 'samples',
-      queryFn: async () => {
-        const response = await axios.post<SamplesData[]>("/api/samples", {
-          collection_id,
-        });
-        return response.data;
-      },
-    });
+const SamplesList = ({ collection_id }: Props) => {
+  
+  // Use react-query and axios as query function to fetch sample data and reflect the changes in UI
+  const { data } = useQuery({
+    queryKey: 'samples',
+    queryFn: async () => {
+      const response = await axios.post<SamplesData[]>("/api/samples", {
+        collection_id,
+      });
+      return response.data; // The process of fetching data is easier with axios 
+    },
+  });
 
   return (
     <div className="max-h-screen">
@@ -60,7 +60,7 @@ interface SamplesData {
           ): (<p>No Samples Record Found</p>)
           }
     </div>
-  );
+    );
 };
 
 export default SamplesList;
