@@ -69,7 +69,7 @@ export default function HomePage() {
                       {/* Link every collection title to its manage page*/}
                       <Link key={collection.id} href={`/manage/${collection.id}`}>
                         <Button>
-                          <p className="w-full overflow-hidden truncate whitespace-nowrap text-ellipsis">
+                          <p className="w-full whitespace-nowrap">
                           {collection.title}
                           </p>
                         </Button>
