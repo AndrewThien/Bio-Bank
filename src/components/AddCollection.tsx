@@ -12,21 +12,14 @@ const AddCollection = () => {
   const [disease, setDisease] = useState('');
 
   // Set mutation function for adding collection and refetching
-const mutation = useMutation(async ({ title, disease }: { title: string; disease: string }) => {
-    const response = await fetch('/api/add_collection', {
+const mutation = useMutation(({ title, disease }: { title: string; disease: string }) => 
+    fetch('/api/add_collection', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ title, disease }),
-    });
-
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
-    }
-
-    return response.json();
-}, {
+    }), {
     onSuccess: () => {
         // Invalidate and refetch
         queryClient.invalidateQueries('collections');

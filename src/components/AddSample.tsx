@@ -60,39 +60,39 @@ const AddSample = ({collection_id}: Props) => {
     // Return the form component
     return (
         <form onSubmit={handleSubmit}>
-            <table style={{ padding: '10px' }}>
-                <tbody>
-                    <tr>
-                        <td style={{ textAlign: 'left' }}>
-                            <label>Donor count:</label>
-                        </td>
-                        <td>
-                            <input type="number" value={donorCount || ''} onChange={e => setDonorCount(Number(e.target.value))} required />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style={{ textAlign: 'left' }}>
-                            <label>Material Type:</label>
-                        </td>
-                        <td>
-                            <input type="text" value={materialType} onChange={e => setMaterialType(e.target.value)} required />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style={{ textAlign: 'left' }}>
-                            <label>Last updated on:</label>
-                        </td>
-                        <td>
-                            <input type="date" value={lastUpdated} onChange={e => setLastUpdated(e.target.value)} required />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colSpan={2}>
-                        <Button type="submit" className='mt-3 mb-5 text-sm'>Add Sample<PlusCircle className='ml-2'/></Button> 
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+          <table style={{ padding: '10px' }}>
+            <tbody>
+              <tr>
+                <td style={{ textAlign: 'left' }}>
+                  <label>Donor count:</label>
+                </td>
+                <td>
+                  <input type="number" value={donorCount || ''} onChange={e => setDonorCount(Number(e.target.value))} required />
+                </td>
+              </tr>
+              <tr>
+                <td style={{ textAlign: 'left' }}>
+                  <label>Material Type:</label>
+                </td>
+                <td>
+                  <input type="text" value={materialType} onChange={e => setMaterialType(e.target.value)} required />
+                </td>
+              </tr>
+              <tr>
+                <td style={{ textAlign: 'left' }}>
+                  <label>Last updated on:</label>
+                </td>
+                <td>
+                  <input type="date" value={lastUpdated} onChange={e => setLastUpdated(e.target.value)} required />
+                </td>
+              </tr>
+              <tr>
+                <td colSpan={2}>
+                  <Button type="submit" className='mt-3 mb-5 text-sm'>Add Sample<PlusCircle className='ml-2'/></Button> 
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </form>
     );
 };

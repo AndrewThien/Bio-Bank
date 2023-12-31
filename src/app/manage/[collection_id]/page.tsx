@@ -11,14 +11,6 @@ import { useQuery } from 'react-query';
 import { useState } from 'react';
 import CollectionList from '@/components/CollectionList';
 
-// Define the collection data type
-interface CollectionData {
-  id: number; 
-  created_at: Date;
-  title: string;
-  disease: string; 
-}
-
 // Define page property
 type Props = {
   params: {
