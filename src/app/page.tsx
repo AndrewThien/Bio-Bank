@@ -25,9 +25,9 @@ export default function HomePage() {
       </Link>
     </div>
     {/* Main content */}
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-sky-400 to-sky-200">
+    <div className="flex flex-col items-center min-h-screen bg-gradient-to-b from-sky-400 to-sky-200">
       {/* Make the page responsive by adding 'sm' attribute */}
-      <div className="flex flex-col sm:flex-row justify-center">
+      <div className="mt-5 flex flex-col sm:flex-row justify-center">
         <div className="flex flex-col sm:flex-row items-start sm:items-center text-center sm:w-full">
           <div className="sm:w-2/3 sm:mr-10">
             {/* Show the collection data on a nice table using CSS style */}

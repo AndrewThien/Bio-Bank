@@ -1,5 +1,5 @@
 'use client';
-import { ArrowLeftCircle, Loader2 } from 'lucide-react';
+import { ArrowLeftCircle, Loader2, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import styles from '@/app/table.module.css';
@@ -33,27 +33,25 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
   return (
     <>    
     {/* Top sticky Nav Bar */}
-    <div className="sticky top-0 z-50 flex justify-between items-center w-full bg-white px-4">
+    <div className="sticky top-0 z-50 flex flex-col justify-center items-center w-full bg-white px-4">
+      {/* Title */}
+      <div className="mt-2 mb-2">
+        <Link href="/">
+          <h1 className="text-3xl font-semibold">BIO BANK</h1>
+        </Link>
+      </div>
       {/* Home button */}
       <div>
         <Link href='/'>
-          <ArrowLeftCircle className='ml-5' />
+          <Button className='mb-2'>Home <Home className='ml-2' /></Button>
         </Link>
       </div>
-      {/* Title */}
-      <div className="flex justify-center flex-grow">
-        <Link href="/">
-          <h1 className="mt-2 mb-2 text-3xl font-semibold">BIO BANK</h1>
-        </Link>
-      </div>
-      {/* Empty div to keep the title centered */}
-      <div></div>
     </div>
 
     {/* Main content */}
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-sky-400 to-sky-200">
+    <div className="flex flex-col items-center min-h-screen bg-gradient-to-b from-sky-400 to-sky-200">
       {/* Make the page responsive by adding 'sm' attribute */}
-      <div className="flex flex-col sm:flex-row justify-center">
+      <div className="mt-5 flex flex-col sm:flex-row justify-center">
         <div className="flex flex-col sm:flex-row items-start sm:items-center text-center sm:w-full">
           <div className="sm:w-2/3 sm:mr-10">
 
