@@ -69,9 +69,11 @@ const SamplePage =  ({ params: { collection_id } }: Props) => {
           
           {/* Add new sample function */}
           {isCollectionLoaded && (
-            <div className="sm:w-1/3 mt-5 sm:mt-0 items-center text-center">
-              <h1 className="mb-1 mt-5 text-xl font-semibold">Add a new sample record to this collection? Do it here</h1>
-              <AddSample collection_id={parsedCollectionId} />
+            <div className="w-full sm:w-1/3 mt-5 sm:mt-0">
+              <div className="flex flex-col items-center text-center">
+                <h1 className="mb-1 mt-5 text-xl font-semibold">Add a new sample record to this collection? Do it here</h1>
+                <AddSample collection_id={parsedCollectionId} />
+              </div>
             </div>
           )}
         </div>

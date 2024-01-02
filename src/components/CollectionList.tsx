@@ -73,11 +73,11 @@ const CollectionList = ({collection_id, onLoading} : Props) => {
                   {/* Link every collection title to its manage page if collection_id equals -1*/}
                   {collection_id !== -1 ? collection.title : 
                   <Link key={collection.id} href={`/manage/${collection.id}`}>
-                  <Button>
-                    <p className="w-full whitespace-nowrap">
-                    {collection.title}
+                  <button className="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
+                    <p>
+                      {collection.title}
                     </p>
-                  </Button>
+                  </button>
                 </Link>}
                   </td>
                   <td>{collection.disease}</td>
