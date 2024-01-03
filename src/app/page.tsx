@@ -9,6 +9,7 @@ import { useState } from 'react';
 export default function HomePage() {
   // Define loading state
   const [isCollectionLoaded, setIsCollectionLoaded] = useState(false);
+  
   // Define handle loading state change function
   const handleLoadingChange = (isLoading: boolean) => {
     setIsCollectionLoaded(!isLoading);
@@ -30,7 +31,7 @@ export default function HomePage() {
       <div className="mt-5 flex flex-col sm:flex-row justify-center">
         <div className="flex flex-col sm:flex-row items-start sm:items-center text-center sm:w-full">
           <div className="sm:w-2/3 sm:mr-10">
-            {/* Show the collection data on a nice table using CSS style */}
+            {/* Show the collection list */}
             <CollectionList collection_id={-1} onLoading={handleLoadingChange}/>
           </div>
           

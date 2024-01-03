@@ -34,9 +34,6 @@ const CollectionList = ({collection_id, onLoading} : Props) => {
             toast.error('Error loading collections');
         }
     },
-    // Depend on the fetching result to set loading state
-    onSuccess: () => onLoading(false),
-    onError: () => onLoading(true),
   });
 
   // useEffect to update loading state
