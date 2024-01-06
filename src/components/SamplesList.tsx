@@ -1,5 +1,3 @@
-'use client';
-
 import { Button } from "./ui/button";
 import { useQuery } from "react-query";
 import axios from "axios";
@@ -31,7 +29,8 @@ const SamplesList = ({ collection_id }: Props) => {
   });
 
   return (
-    <div className="max-h-screen">
+    <div className="flex flex-col items-center text-center">
+    <h1 className="mb-1 mt-5 text-2xl font-semibold">Samples Record Details</h1>
           {data && data.length > 0 ? (
             <div>
               <table className={styles.table}>

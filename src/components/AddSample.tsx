@@ -59,8 +59,10 @@ const AddSample = ({collection_id}: Props) => {
   };
     // Return the form component
     return (
+      <div className="flex flex-col items-center text-center">
+      <h1 className="mb-1 mt-5 text-xl font-semibold">Add a new sample record to this collection? Do it here</h1>
         <form onSubmit={handleSubmit}>
-          <table style={{ padding: '10px' }}>
+          <table>
             <tbody>
               <tr>
                 <td style={{ textAlign: 'left' }}>
@@ -80,7 +82,7 @@ const AddSample = ({collection_id}: Props) => {
               </tr>
               <tr>
                 <td style={{ textAlign: 'left' }}>
-                  <label>Last updated on:</label>
+                  <label>Last updated:</label>
                 </td>
                 <td>
                   <input type="date" value={lastUpdated} onChange={e => setLastUpdated(e.target.value)} required />
@@ -94,6 +96,7 @@ const AddSample = ({collection_id}: Props) => {
             </tbody>
           </table>
         </form>
+      </div>
     );
 };
 

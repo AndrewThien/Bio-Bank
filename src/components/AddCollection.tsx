@@ -45,6 +45,9 @@ const mutation = useMutation(({ title, disease }: { title: string; disease: stri
   };
     // Return the form component
     return (
+    <div className="flex flex-col items-center text-center">
+        <h1 className="mb-3 mt-5 text-xl font-semibold">
+          Add a new collection? Do it here </h1>
         <form onSubmit={handleSubmit}>
             <table>
                 <tbody>
@@ -72,6 +75,7 @@ const mutation = useMutation(({ title, disease }: { title: string; disease: stri
                 </tbody>
             </table>
         </form>
+    </div>
     );
 }
 
